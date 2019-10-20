@@ -499,76 +499,8 @@ function myFeature6(stroke){
 	return k;
 }
 
-function myFeature7(stroke){//NDDE
-	var differenceXMinus=null;
-	var differenceYMinus=null;
-	var differenceX=null;
-	var differenceY=null;
-	var angle=null;
-	//var totalAbsoluteAngle=null;
-	var minAngleChange=Number.MAX_VALUE;
-	var maxAngleChange=Number.MIN_VALUE;
-	var pointMax=null;
-	var pointMin=null;
 
-	for(var i=1;i<stroke.length-1;i++){
-		differenceX=stroke[i+1].x-stroke[i].x;
-		differenceY=stroke[i+1].y-stroke[i].y;
-		differenceXMinus=stroke[i].x-stroke[i-1].x;
-		differenceYMinus=stroke[i].y-stroke[i-1].y;
-		var numerator=(differenceX * differenceYMinus)-(differenceXMinus * differenceY);
-		var denominator=(differenceXMinus * differenceX)+(differenceYMinus * differenceY);
-		angle=Math.atan(numerator,denominator);
-		var absAngle=Math.abs(angle);
-		if(absAngle > maxAngleChange){
-			maxAngleChange=absAngle;
-			pointMax=i;
-		}
-		if(absAngle<minAngleChange){
-			minAngleChange=absAngle;
-			pointMin=i;
 
-		}
-
-	}
-	var nddePoints=[];
-	var initial=Math.min(pointMin,pointMax);
-	var final=Math.max(pointMin,pointMax);
-	var k=null;
-	for(k=initial;k<=final;k++){
-		nddePoints.push(stroke[k]);
-	}
-	var length=rubineFeature8(nddePoints);
-	var strokeLength=rubineFeature8(stroke);
-	return length/strokeLength;
-}
-function myFeature8(stroke){//Direction Change Ratio 
-	var differenceXMinus=null;
-	var differenceYMinus=null;
-	var differenceX=null;
-	var differenceY=null;
-	var angle=null;
-	var totalAbsoluteAngle=null;
-	var i=null;
-	var maxAngle=Number.MIN_VALUE;
-
-	for(i=1;i<stroke.length-1;i++){
-		differenceX=stroke[i+1].x-stroke[i].x;
-		differenceY=stroke[i+1].y-stroke[i].y;
-		differenceXMinus=stroke[i].x-stroke[i-1].x;
-		differenceYMinus=stroke[i].y-stroke[i-1].y;
-		var numerator=(differenceX * differenceYMinus)-(differenceXMinus * differenceY);
-		var denominator=(differenceXMinus * differenceX)+(differenceYMinus * differenceY);
-		angle=Math.atan(numerator,denominator);
-		var absAngle=Math.abs(angle);
-		totalAbsoluteAngle=totalAbsoluteAngle+absAngle;
-		if(absAngle>maxAngle){
-			maxAngle=absAngle;
-		}
-	}
-	var averageAngle=totalAbsoluteAngle/(stroke.length-2)
-	return maxAngle/averageAngle;
-}
 
 
 
