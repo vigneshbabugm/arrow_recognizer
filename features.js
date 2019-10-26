@@ -247,9 +247,9 @@ function rubineFeature12(stroke){
 	var timeDifferenceSquared;
 	var i;
 	for(i=1;i<stroke.length;i++){
-		differenceXSquared=Math.pow(stroke[i].x-previousPoint.x,2);
-		differenceYSquared=Math.pow(stroke[i].y-previousPoint.y,2);
-		timeDifferenceSquared=Math.pow(stroke[i].time-previousPoint.time,2);
+		differenceXSquared=Math.pow(stroke[i].x-stroke[i-1].x,2);
+		differenceYSquared=Math.pow(stroke[i].y-stroke[i-1].y,2);
+		timeDifferenceSquared=Math.pow(stroke[i].time-stroke[i-1].time,2);
 		if(timeDifferenceSquared==0){
 			var sqSpeed=(differenceXSquared+differenceYSquared)/(1+timeDifferenceSquared);//Maniputing the denominator to avoid divide by zero error;
 		}else{
